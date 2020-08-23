@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% block title %} Записи {{ author.username }}{% endblock %}
+{% block content %}
+{% load user_filters %}
+
+        {% include "includes/author_card.html" with author=author posts=author.posts%}
+
+        {% include "includes/post_card.html" with post=post %}
+        
+        {% include "includes/comments.html" with form=form items=post.comments.select_related %}
+
+{% endblock %}

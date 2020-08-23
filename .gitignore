@@ -20,3 +20,11 @@ posts/static/
 media/
 
 db.sqlite3
+.vscode/
+.vscode
+/.vscode
+settings.json
+
+__MACOSX/
+hw03
+mylogfile.log
