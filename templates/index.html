@@ -6,14 +6,10 @@
 
   {% include "includes/menu.html" with index=True %}
 
-    {% load cache %}
-    {% cache 20 index_page  %}
-
     {% for post in page %}
       {% include "includes/post_card.html" with post=post %}
     {% endfor %}
-    
-    {% endcache %}
+
 </div>
     {% if page.has_other_pages %}
       {% include "includes/paginator.html" with items=page paginator=paginator %}

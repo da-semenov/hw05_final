@@ -4,14 +4,10 @@
 {% block content %}
 
 <p>{{ group.description }}</p>
-
- {% load cache %}
- {% cache 20 index_page  %}
     
     {% for post in page %}
         {% include "includes/post_card.html" with post=post %}
     {% endfor %}
- {% endcache %}
 
 {% if page.has_other_pages %}
     {% include "includes/paginator.html" with items=page paginator=paginator %}
