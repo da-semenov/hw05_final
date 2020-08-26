@@ -31,9 +31,9 @@ def group_posts(request, slug):
 def new_post(request):
     form = PostForm(request.POST or None, files=request.FILES or None)
     if form.is_valid():
-        new_post = form.save(commit=False)
-        new_post.author = request.user
-        new_post.save()
+        post = form.save(commit=False)
+        post.author = request.user
+        post.save()
         return redirect("index")
     return render(request, "new.html", {"form": form})
 
