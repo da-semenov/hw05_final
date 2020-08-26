@@ -131,7 +131,7 @@ class ImageTest(TestCase):
                 self.assertContains(response, "<img")
                 cache.clear()
 
-    def test_image_upload(self):
+    def test_upload_not_an_image(self):
         """Защита от загрузки файлов не-графических форматов"""
         not_image = SimpleUploadedFile(name="some.txt",
                                        content=b"abc",

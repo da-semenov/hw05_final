@@ -29,16 +29,13 @@ def group_posts(request, slug):
 
 @login_required
 def new_post(request):
-    if request.method == "POST":
-        form = PostForm(request.POST, files=request.FILES or None)
-        if form.is_valid():
-            post = form.save(commit=False)
-            post.author = request.user
-            post.save()
-            return redirect("index")
-    form = PostForm(files=request.FILES or None)
-    return render(request, "new.html", {"form": form,
-                                        "is_edit": False})
+    form = PostForm(request.POST or None, files=request.FILES or None)
+    if form.is_valid():
+        new_post = form.save(commit=False)
+        new_post.author = request.user
+        new_post.save()
+        return redirect("index")
+    return render(request, "new.html", {"form": form})
 
 
 def profile(request, username):
@@ -124,11 +121,10 @@ def add_comment(request, username, post_id):
 
 @login_required
 def follow_index(request):
-    following = Follow.objects.filter(user=request.user).all()
-    authors = []
-    for author in following:
-        authors.append(author.author.id)
-    posts = Post.objects.filter(author__in=authors).all()
+    posts = (
+        Post.objects.select_related("author").
+        filter(author__following__user=request.user)
+    )
     paginator = Paginator(posts, 10)
     page_number = request.GET.get("page")
     page = paginator.get_page(page_number)
