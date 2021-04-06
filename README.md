@@ -1,3 +1,5 @@
+[![Python](https://img.shields.io/badge/-Python-464646??style=flat-square&logo=Python)](https://www.python.org/)
+[![Django](https://img.shields.io/badge/-Django-464646??style=flat-square&logo=Django)](https://www.djangoproject.com/)
 # Социальная сеть Yatube
 Веб-приложение на Django. Социальная сеть с возможностью публикации фото 
 с описанием, комментариями под постами, реализована система подписок. 
